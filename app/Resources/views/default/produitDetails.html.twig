@@ -1,0 +1,111 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="single-product-area section-padding-100 clearfix">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-12 col-lg-7">
+                    <div class="single_product_thumb">
+                        <div id="product_details_slider" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li class="active" data-target="#product_details_slider" data-slide-to="0" style="background-image: url({{produit.coverImage}});"></li>
+                                <li data-target="#product_details_slider" data-slide-to="2" style="background-image: url({{produit.firstimage}});"></li>
+                                <li data-target="#product_details_slider" data-slide-to="3" style="background-image: url({{produit.secondeimage}});"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <a class="gallery_img" href="{{produit.coverImage}}">
+                                        <img class="d-block w-100" src="{{produit.coverImage}}" alt="First slide">
+                                    </a>
+                                </div>
+                                <div class="carousel-item">
+                                    <a class="gallery_img" href="{{produit.firstimage}}">
+                                        <img class="d-block w-100" src="{{produit.firstimage}}" alt="Second slide">
+                                    </a>
+                                </div>
+                                <div class="carousel-item">
+                                    <a class="gallery_img" href="{{produit.secondeimage}}">
+                                        <img class="d-block w-100" src="{{produit.secondeimage}}" alt="Third slide">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-5">
+                    <div class="single_product_desc">
+                        <!-- Product Meta Data -->
+                        <div class="product-meta-data">
+                            <div class="line"></div>
+                            <p class="product-price">{{produit.prix}}</p>
+                            <a href="product-details.html">
+                                <h6>{{produit.libelle}}</h6>
+                            </a>
+                            <!-- Ratings & Review -->
+                            <div class="ratings-review mb-15 d-flex align-items-center justify-content-between">
+                                <div class="ratings">
+                                    {% for i in 1..produit.evaluation %}
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <!-- Avaiable -->
+                            <p class="avaibility">
+                                {% if produit.stock > 10 %}
+                                    <i class="fa fa-circle"></i>Available
+                                {% elseif produit.stock > 0 %}
+                                    Only
+                                    {{ produit.stock }}
+                                    left!
+                                {% else %}
+                                    Sold-out!
+                                {% endif %}
+                            </p>
+                        </div>
+
+                        <div class="short_overview my-5">
+                            <p>{{produit.longDesc}}</p>
+                        </div>
+
+                        <!-- Add to Cart Form -->
+                        <form class="cart clearfix" method="post">
+                            <div class="cart-btn d-flex mb-50">
+                                <p>Qty</p>
+                                <div class="quantity">
+                                    <input type="number" class="qty-text" name="quantity" step="1" min="1" max="{{produit.stock}}">
+                                </div>
+                            </div>
+                            <a href="{{path("panier_add", {'id': produit.id} )}}" class="btn amado-btn" id="add-to-cart-btn" data-product="{{produit.id}}">Add to cart</a>
+                        </form>
+
+                        <div class="list">
+                            <div class="title">Reviews</div>
+                            {% for item in avis %}
+                                <div class="item">
+                                    {{item.corp}}
+                                    <span>{{item.createdAt | date()}}</span>
+                                    <div class="ratings-review">
+                                        <div class="ratings">
+                                            {% for i in 1..item.rate %}
+                                                <i class="fa fa-star" aria-hidden="true"></i>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+                        </div>
+
+
+                        {{ form_start(formAvis)}}
+                        {{ form_widget(formAvis.corp, { 'attr': {'class': 'input is-fullwidth'} }) }}
+                        {{ form_widget(formAvis.rate, { 'attr': {'class': 'input'} }) }}
+                        <button class="button is-black" type="submit">Send</button>
+                        {{ form_end(formAvis) }}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

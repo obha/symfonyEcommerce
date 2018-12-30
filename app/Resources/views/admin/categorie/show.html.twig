@@ -1,0 +1,66 @@
+{% extends 'dashboard.html.twig' %}
+
+{% block body %}
+    <h1>Categorie</h1>
+
+    <table class="ui celled table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ categorie.id }}</td>
+            </tr>
+            <tr>
+                <th>Libelle</th>
+                <td>{{ categorie.libelle }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ categorie.description }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ categorie.image }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="ui buttons">
+        <a class="ui animated button" href="{{ path('categorie_index') }}">
+            <div class="visible content">
+                Retour à la liste
+            </div>
+            <div class="hidden content">
+                <i class="left arrow icon"></i>
+            </div>
+        </a>
+        <a class="ui vertical animated button" href="{{ path('categorie_edit', { 'id': categorie.id }) }}">
+            <div class="hidden content">Modifier</div>
+            <div class="visible content">
+                <i class="shop icon"></i>
+            </div>
+        </a>
+        {{ form_start(delete_form) }}
+        <button class="ui vertical button animated" tabindex="0">
+
+            <div class="hidden content">Supprimer</div>
+            <div class="visible content">
+                <i class="shop icon"></i>
+            </div>
+        </button>
+        {{ form_end(delete_form) }}
+    </div>
+
+    {# <ul>
+        <li>
+            <a href="{{ path('categorie_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('categorie_edit', { 'id': categorie.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+            <input type="submit" value="Delete">
+            
+        </li>
+    </ul> #}
+{% endblock %}

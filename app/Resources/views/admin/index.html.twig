@@ -1,0 +1,91 @@
+{% extends 'dashboard.html.twig' %}
+{% block body %}
+
+    <div class="ui two column grid">
+        <div class="column">
+            <div class="ui segment">
+                <canvas id="sales-chart" width="800" height="450"></canvas>
+            </div>
+        </div>
+        <div class="column">
+            <div class="ui vertically divided grid">
+                <div class="four column row">
+                    <div class="column">
+                        <div class="ui segment">
+                            <h1>
+                                {{counts["produit"]}}</h1>
+                            <p>
+                                produits
+                            </p>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="ui segment">
+                            <h1>
+                                {{counts["categorie"]}}</h1>
+                            <p>
+                                categories
+                            </p>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="ui segment">
+                            <h1>
+                                {{counts["commande"]}}</h1>
+                            <p>
+                                commandes
+                            </p>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="ui segment">
+                            <h1>
+                                {{counts["avis"]}}</h1>
+                            <p>
+                                avis
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="column row">
+                    <div class="column">
+                        <div class="ui segment">
+                            <h1>$
+                                {{montant}}</h1>
+                            <p>
+                                Montant totale
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui segment">
+        <h1>Commandes list</h1>
+        <hr class="ui divider"/>
+        <table class="ui celled table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Email</th>
+                    <th>Codepostal</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for commande in commandes %}
+                    <tr>
+                        <td>{{ commande.id }}</td>
+                        <td>{{ commande.nom }}</td>
+                        <td>{{ commande.prenom }}</td>
+                        <td>{{ commande.email }}</td>
+                        <td>{{ commande.codePostal }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

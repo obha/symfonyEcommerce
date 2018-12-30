@@ -1,0 +1,43 @@
+{% extends 'dashboard.html.twig' %}
+
+{% block body %}
+    <div class="ui segment">
+        <button class="circular ui button add-btn">
+            <a href="{{ path('categorie_new') }}">Créer une nouvelle categorie</a>
+        </button>
+    </div>
+
+    <div class="ui segment">
+        <table class="ui celled table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Libelle</th>
+                    <th>Description</th>
+                    <th>Image</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for categorie in categories %}
+                    <tr>
+                        <td>
+                            <a href="{{ path('categorie_show', { 'id': categorie.id }) }}">{{ categorie.id }}</a>
+                        </td>
+                        <td>{{ categorie.libelle }}</td>
+                        <td>{{ categorie.description }}</td>
+                        <td><img src="{{ categorie.image }}" width="64"/></td>
+                        <td>
+
+                            <div class="ui buttons">
+                                <a class="ui button" href="{{ path('categorie_show', { 'id': categorie.id }) }}">show</a>
+                                <a class="ui button" href="{{ path('categorie_edit', { 'id': categorie.id }) }}">edit</a>
+                            </div>
+
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

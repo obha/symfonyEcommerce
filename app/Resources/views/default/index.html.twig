@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="products-catagories-area clearfix">
+        <div class="amado-pro-catagory clearfix">
+            {% for item in categories %}
+
+                <div class="single-products-catagory clearfix">
+                    <a href="{{path("shop_page", {'libelle': item.libelle})}}">
+                        <img src="{{item.image}}" alt="">
+                        <!-- Hover Content -->
+                        <div class="hover-content">
+                            <div class="line"></div>
+                            <p>{{item.description}}</p>
+                            <h4>{{item.libelle}}</h4>
+                        </div>
+                    </a>
+                </div>
+
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

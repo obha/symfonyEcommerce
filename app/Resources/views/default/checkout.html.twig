@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    <div class="cart-table-area section-padding-100">
+        <div class="container-fluid">
+            {{ form_start(commandeForm)}}
+            <div class="row">
+                <div class="col-12 col-lg-8">
+                    <div class="checkout_details_area mt-50 clearfix">
+
+                        <div class="cart-title">
+                            <h2>Checkout</h2>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                {{ form_widget(commandeForm.nom, { 'attr': {'class': 'form-control'} }) }}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                {{ form_widget(commandeForm.prenom, { 'attr': {'class': 'form-control'} }) }}
+                            </div>
+                            <div class="col-12 mb-3">
+                                {{ form_widget(commandeForm.email, { 'attr': {'class': 'form-control'} }) }}
+                            </div>
+                            <div class="col-12 mb-3">
+                                {{ form_widget(commandeForm.codePostal, { 'attr': {'class': 'form-control'} }) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <div class="cart-summary">
+                        <h5>Cart Total</h5>
+                        <ul class="summary-table">
+                            <li>Sous total
+                                <span>${{ total["sous"] }}</span></li>
+                            <li>TVA (10%)
+                                <span>${{ total["tva"] }}</span></li>
+                            <li>Frais de transport
+                                <span>Gratuit</span></li>
+                            <li>Total
+                                <span>${{ total["finale"] }}</span></li>
+                        </ul>
+
+                        <div class="payment-method">
+                            <!-- Cash on delivery -->
+                            <div class="custom-control custom-checkbox mr-sm-2">
+                                <input type="checkbox" class="custom-control-input" id="cod" checked="checked">
+                                <label class="custom-control-label" for="cod">Cash on Delivery</label>
+                            </div>
+                            <!-- Paypal -->
+                            <div class="custom-control custom-checkbox mr-sm-2">
+                                <input type="checkbox" class="custom-control-input" id="paypal">
+                                <label class="custom-control-label" for="paypal">Paypal
+                                    <img class="ml-15" src="img/core-img/paypal.png" alt=""></label>
+                            </div>
+                        </div>
+
+                        <div class="cart-btn mt-100">
+                            <button type="submit" class="btn amado-btn w-100">Checkout</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            {{ form_end(commandeForm) }}
+        </div>
+    </div>
+{% endblock %}

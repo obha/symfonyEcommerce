@@ -1,0 +1,42 @@
+{% extends 'dashboard.html.twig' %}
+
+{% block body %}
+    <div class="ui segment">
+        <table class="ui celled table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Corp</th>
+                    <th>Rate</th>
+                    <th>Createdat</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for avi in avis %}
+                    <tr>
+                        <td>
+                            <a href="{{ path('admin_dashboard_avis_show', { 'id': avi.id }) }}">{{ avi.id }}</a>
+                        </td>
+                        <td>{{ avi.corp }}</td>
+                        <td>{{ avi.rate }}</td>
+                        <td>
+                            {% if avi.createdAt %}{{ avi.createdAt|date('Y-m-d H:i:s') }}
+                            {% endif %}
+                        </td>
+                        <td>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('admin_dashboard_avis_show', { 'id': avi.id }) }}">show</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('admin_dashboard_avis_edit', { 'id': avi.id }) }}">edit</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

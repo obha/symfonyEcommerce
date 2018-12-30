@@ -1,0 +1,64 @@
+/** Elements **/
+
+
+/** Componants **/
+.list > .title{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-size: 2em; 
+}
+
+.list > .item{
+
+    display: block;
+    padding: 8px;
+    border-bottom: 1px solid whitesmoke;
+}
+
+.list > .item {
+    margin-bottom:.5em; 
+}
+
+.list > .item > span {
+    font-weight: lighter;
+    font-size: .7em;
+    color: gray;
+    float: right;
+} 
+
+/** Form **/
+.button{
+    border: none;
+    padding: 8px;
+}
+
+.input{
+    padding: 8px;
+    border: 0.1em solid whitesmoke;
+}
+
+/** Colors **/
+.is-primary{
+    background: #fbb710;
+    color: black;
+}
+
+.is-black{
+    background: black;
+    color: white;
+}
+
+/** Handlers **/
+.is-fullwidth{
+    width: 100%
+}
+
+.checkout_details_area .form-control{
+    height: 60px;
+    border: none;
+    border-radius: 0;
+    background-color: #f5f7fa;
+    padding: 30px;
+    color: #6b6b6b;
+    font-size: 14px;
+}

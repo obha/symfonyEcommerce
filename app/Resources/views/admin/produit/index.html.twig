@@ -1,0 +1,54 @@
+{% extends 'dashboard.html.twig' %}
+
+{% block body %}
+
+    <div class="ui segment">
+        <button class="circular ui button add-btn">
+            <a href="{{ path('produit_new') }}">Créer une nouveau produit</a>
+        </button>
+    </div>
+    <div class="ui segment">
+        <table class="ui celled table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Libelle</th>
+                    <th>Courtdesc</th>
+                    <th>Longdesc</th>
+                    <th>Coverimage</th>
+                    <th>Firstimage</th>
+                    <th>Secondeimage</th>
+                    <th>Prix</th>
+                    <th>Stock</th>
+                    <th>evaluation</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for produit in produits %}
+                    <tr>
+                        <td>
+                            <a href="{{ path('produit_show', { 'id': produit.id }) }}">{{ produit.id }}</a>
+                        </td>
+                        <td>{{ produit.libelle }}</td>
+                        <td>{{ produit.courtDesc }}</td>
+                        <td>{{ produit.longDesc }}</td>
+                        <td><img src="{{ produit.coverImage }}" width="96"/></td>
+                        <td><img src="{{ produit.firstimage }}" width="96"/></td>
+                        <td><img src="{{ produit.secondeimage }}" width="96"/></td>
+                        <td>{{ produit.prix }}</td>
+                        <td>{{produit.stock}}</td>
+                        <td>{{produit.evaluation}}</td>
+                        <td>
+                            <div class="ui buttons">
+                                <a class="ui button" href="{{ path('produit_show', { 'id': produit.id }) }}">show</a>
+                                <a class="ui button" href="{{ path('produit_edit', { 'id': produit.id }) }}">edit</a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
